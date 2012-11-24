@@ -2,10 +2,9 @@
     require('GoogleMap.class.php');
 
     $map = new GoogleMap('map');
-    $map->setAPIKey('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');//api is hidden, works in live version
-    if ( isset($_GET['location_request']) && $_GET['location_request'] != ' ' ){
-		#$center_lat = 0;
-		#$center_lon = 0;
+    $map->setAPIKey('xxxxxxxxxxxxxxxxxxxxxxx');
+    if ( isset($_GET['location_request']) && !empty($_GET['location_request'] ) ){
+		
 		$location_request =trim($_GET['location_request']);
 		$location_request = str_replace( ' ', '+' ,$location_request);
 		$json_result = json_decode(file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address='.$location_request.'&sensor=false'));
@@ -24,8 +23,8 @@
 		#echo "</pre>";
 				
 	}else{
-		$center_lat = $maps->center_lat;
-		$center_lon = $maps->center_lon;
+		$center_lat = $map->center_lat;
+		$center_lon = $map->center_lon;
 		$zoom = $map->zoom;
 	}
     ?>
